@@ -30,7 +30,7 @@
 | item_condition_id | integer    | null: false,      |
 | delivery_id       | integer    | null: false,      |
 | region_id         | integer    | null: false,      |
-| days_to_Ship_id   | integer    | null: false,      |
+| days_to_ship_id   | integer    | null: false,      |
 | price             | integer    | null: false,      |
 
 
@@ -41,10 +41,10 @@
 
 ## orders テーブル
 
-| Column     | Type       | Options           |
-| ---------- | ---------- | ----------------- |
-| order_user | references | foreign_key: true |
-| order_item | references | foreign_key: true |
+| Column | Type       | Options           |
+| ------ | ---------- | ----------------- |
+| user   | references | foreign_key: true |
+| item   | references | foreign_key: true |
 
 ### Association
 
