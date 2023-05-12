@@ -29,7 +29,7 @@
 | category_id       | integer    | null: false,      |
 | item_condition_id | integer    | null: false,      |
 | delivery_id       | integer    | null: false,      |
-| region_id         | integer    | null: false,      |
+| prefectures_id   | integer    | null: false       |
 | days_to_ship_id   | integer    | null: false,      |
 | price             | integer    | null: false,      |
 
@@ -58,7 +58,7 @@
 | ---------------- | ---------- | ----------------- |
 | order            | references | foreign_key: true |
 | post_code        | string     | null: false       |
-| prefectures      | string     | null: false       |
+| prefectures_id   | integer    | null: false       |
 | municipalities   | string     | null: false       |
 | address          | string     | null: false       |
 | building_name    | string     | null: true        |
