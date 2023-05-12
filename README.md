@@ -31,7 +31,7 @@
 | delivery         | string     | null: false,      |
 | region           | string     | null: false,      |
 | days_to_Ship     | string     | null: false,      |
-| price            | string     | null: false,      |
+| price            | integer    | null: false,      |
 
 
 ### Association
