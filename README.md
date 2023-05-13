@@ -5,7 +5,7 @@
 | Column             | Type   | Options      |
 | ------------------ | ------ | ------------ |
 | nickname           | string | null: false  |
-| email              | string | unique: true |
+| email              | string | unique: true, notnull |
 | encrypted_password | string | null: false  |
 | first_name         | string | null: false  |
 | last_name          | string | null: false  |
@@ -29,7 +29,7 @@
 | category_id       | integer    | null: false,      |
 | item_condition_id | integer    | null: false,      |
 | delivery_id       | integer    | null: false,      |
-| prefectures_id   | integer    | null: false       |
+| prefectures_id    | integer    | null: false       |
 | days_to_ship_id   | integer    | null: false,      |
 | price             | integer    | null: false,      |
 
