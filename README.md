@@ -43,8 +43,8 @@
 
 | Column | Type       | Options           |
 | ------ | ---------- | ----------------- |
-| user   | references | foreign_key: true |
-| item   | references | foreign_key: true |
+| user   | references | foreign_key: true, notnull |
+| item   | references | foreign_key: true, notnull |
 
 ### Association
 
