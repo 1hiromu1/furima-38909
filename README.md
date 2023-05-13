@@ -56,7 +56,7 @@
 
 | Column           | Type       | Options           |
 | ---------------- | ---------- | ----------------- |
-| order            | references | foreign_key: true |
+| order            | references | foreign_key: true, notnull |
 | post_code        | string     | null: false       |
 | prefectures_id   | integer    | null: false       |
 | municipalities   | string     | null: false       |
