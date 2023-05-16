@@ -61,7 +61,7 @@
 | prefecture_id    | integer    | null: false                    |
 | municipalities   | string     | null: false                    |
 | address          | string     | null: false                    |
-| building_name    | string     | null: true                     |
+| building_name    | string     |                                |
 | telephone_number | string     | null: false                    |
 
 
