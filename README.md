@@ -21,17 +21,17 @@
 
 ## items テーブル
 
-| Column            | Type       | Options                    |
-| ----------------- | ---------- | -------------------------- |
-| user              | references | foreign_key: true, notnull |
-| item_name         | string     | null: false,               |
-| item_description  | text       | null: false,               |
-| category_id       | integer    | null: false,               |
-| item_condition_id | integer    | null: false,               |
-| delivery_id       | integer    | null: false,               |
-| prefecture_id     | integer    | null: false                |
-| days_to_ship_id   | integer    | null: false,               |
-| price             | integer    | null: false,               |
+| Column            | Type       | Options                        |
+| ----------------- | ---------- | ------------------------------ |
+| user              | references | foreign_key: true, null: false |
+| item_name         | string     | null: false,                   |
+| item_description  | text       | null: false,                   |
+| category_id       | integer    | null: false,                   |
+| item_condition_id | integer    | null: false,                   |
+| delivery_id       | integer    | null: false,                   |
+| prefecture_id     | integer    | null: false                    |
+| days_to_ship_id   | integer    | null: false,                   |
+| price             | integer    | null: false,                   |
 
 
 ### Association
@@ -41,10 +41,10 @@
 
 ## orders テーブル
 
-| Column | Type       | Options                    |
-| ------ | ---------- | -------------------------- |
-| user   | references | foreign_key: true, notnull |
-| item   | references | foreign_key: true, notnull |
+| Column | Type       | Options                        |
+| ------ | ---------- | ------------------------------ |
+| user   | references | foreign_key: true, null: false |
+| item   | references | foreign_key: true, null: false |
 
 ### Association
 
@@ -54,15 +54,15 @@
 
 ## informations テーブル
 
-| Column           | Type       | Options                    |
-| ---------------- | ---------- | -------------------------- |
-| order            | references | foreign_key: true, notnull |
-| post_code        | string     | null: false                |
-| prefecture_id    | integer    | null: false                |
-| municipalities   | string     | null: false                |
-| address          | string     | null: false                |
-| building_name    | string     | null: true                 |
-| telephone_number | string     | null: false                |
+| Column           | Type       | Options                        |
+| ---------------- | ---------- | ------------------------------ |
+| order            | references | foreign_key: true, null: false |
+| post_code        | string     | null: false                    |
+| prefecture_id    | integer    | null: false                    |
+| municipalities   | string     | null: false                    |
+| address          | string     | null: false                    |
+| building_name    | string     | null: true                     |
+| telephone_number | string     | null: false                    |
 
 
 ### Association
