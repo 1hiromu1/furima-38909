@@ -34,7 +34,7 @@ RSpec.describe User, type: :model do
       end
       it 'passwordとpassword_confirmationが不一致では登録できない' do
         @user.password = '222222'
-        @user.password_confirmation= '111111'
+        @user.password_confirmation = '111111'
         @user.valid?
         expect(@user.errors.full_messages).to include "Password confirmation doesn't match Password"
       end
@@ -68,24 +68,24 @@ RSpec.describe User, type: :model do
         another_user = FactoryBot.build(:user)
         another_user.email = @user.email
         another_user.valid?
-        expect(another_user.errors.full_messages).to include "Email has already been taken"
+        expect(another_user.errors.full_messages).to include 'Email has already been taken'
       end
       it 'emailは@を含まないと登録できない' do
         @user.email = 'tesut.com'
         @user.valid?
-        expect(@user.errors.full_messages).to include "Email is invalid"
+        expect(@user.errors.full_messages).to include 'Email is invalid'
       end
       it 'passwordが5文字以下では登録できない' do
         @user.password = '12345'
         @user.password_confirmation = '12345'
         @user.valid?
-        expect(@user.errors.full_messages).to include "Password is too short (minimum is 6 characters)"
+        expect(@user.errors.full_messages).to include 'Password is too short (minimum is 6 characters)'
       end
       it 'passwordが129文字以上では登録できない' do
         @user.password = Faker::Internet.password(min_length: 129)
         @user.password_confirmation = @user.password
         @user.valid?
-        expect(@user.errors.full_messages).to include "Password is too long (maximum is 128 characters)"
+        expect(@user.errors.full_messages).to include 'Password is too long (maximum is 128 characters)'
       end
     end
   end
