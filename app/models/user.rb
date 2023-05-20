@@ -1,6 +1,6 @@
 class User < ApplicationRecord
   validates :nickname, presence: true
-  validates :email, presence: true, uniqueness: true
+  validates :email, presence: true, uniqueness: { case_sensitive: true }
   validates :encrypted_password, presence: true
   validates :first_name, presence: true
   validates :last_name, presence: true
