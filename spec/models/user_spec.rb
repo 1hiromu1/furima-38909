@@ -58,6 +58,38 @@ RSpec.describe User, type: :model do
         @user.valid?
         expect(@user.errors.full_messages).to include "Last name kana can't be blank"
       end
+      it 'お名前(全角)は、名字と名前がそれぞれ無いと登録できない' do
+        @user.last_name = '太郎'
+        @user.first_name = ''
+        @user.valid?
+        expect(@user.errors.full_messages).to include "First name can't be blank"
+      end
+      it 'first_nameが全角（漢字・ひらがな・カタカナ）で無いと登録できない' do
+        @user.first_name = 'tanaka'
+        @user.valid?
+        expect(@user.errors.full_messages).to include "First name is invalid"
+      end
+      it 'last_nameが全角（漢字・ひらがな・カタカナ）で無いと登録できない' do
+        @user.last_name = 'tarou'
+        @user.valid?
+        expect(@user.errors.full_messages).to include "Last name is invalid"
+      end
+      it 'お名前カナ(全角)は、名字と名前がそれぞれ無いと登録できない' do
+        @user.last_name_kana = 'タロウ'
+        @user.first_name_kana = ''
+        @user.valid?
+        expect(@user.errors.full_messages).to include "First name kana can't be blank"
+      end
+      it 'first_name_kanaが全角（カタカナ）で無いと登録できない' do
+        @user.first_name_kana = 'tanaka'
+        @user.valid?
+        expect(@user.errors.full_messages).to include "First name kana is invalid"
+      end
+      it 'last_name_kanaが全角（カタカナ）で無いと登録できない' do
+        @user.last_name_kana = 'tarou'
+        @user.valid?
+        expect(@user.errors.full_messages).to include "Last name kana is invalid"
+      end
       it 'birth_dateが空では登録できない' do
         @user.birth_date = ''
         @user.valid?
