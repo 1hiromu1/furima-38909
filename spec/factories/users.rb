@@ -14,4 +14,3 @@ FactoryBot.define do
     birth_date            { Faker::Date.between(from: '1930-01-01', to: '2017-12-31') }
   end
 end
-
