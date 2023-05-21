@@ -5,7 +5,7 @@ FactoryBot.define do
     end
     nickname              { Faker::Name.initials(number: 2) }
     email                 { Faker::Internet.free_email }
-    password              { Faker::Internet.password(min_length: 6) }
+    password              { Faker::Alphanumeric.alphanumeric(number: 6, min_alpha: 1, min_numeric: 1) }
     password_confirmation { password }
     first_name            { person.first.kanji }
     last_name             { person.last.kanji }
@@ -14,3 +14,4 @@ FactoryBot.define do
     birth_date            { Faker::Date.between(from: '1930-01-01', to: '2017-12-31') }
   end
 end
+
