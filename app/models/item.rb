@@ -3,4 +3,5 @@ class Item < ApplicationRecord
   belongs_to :category
   belongs_to :item_condition
   belongs_to :delivery
+  belongs_to :prefecture
 end
