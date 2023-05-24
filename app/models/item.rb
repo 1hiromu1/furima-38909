@@ -16,9 +16,10 @@ class Item < ApplicationRecord
   validates :delivery_id, presence: true
   validates :prefecture_id, presence: true
   validates :days_to_ship_id, presence: true
-  validates :price, presence: true, numericality: { greater_than_or_equal_to: 300, less_than_or_equal_to: 9999999 }
+  validates :price, presence: true, numericality: { with: /\A[0-9]+\z/, greater_than_or_equal_to: 300, less_than_or_equal_to: 9999999 }
 
   validates :category_id, :item_condition_id, :delivery_id, :prefecture_id, :days_to_ship_id, numericality: { other_than: 1 , message: "can't be blank"}
+  validates :image, presence: true
 
   def was_attached?
     self.image.attached?
