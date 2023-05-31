@@ -19,16 +19,16 @@ class ItemsController < ApplicationController
   end
 
   def show
-    @item = Item.find(params[:id])
+    common_item
   end
 
   def edit
-    @item = Item.find(params[:id])
+    common_item
     redirect_to root_path unless current_user == @item.user
   end
 
   def update
-    @item = Item.find(params[:id])
+    common_item
     if @item.update(item_params)
       redirect_to item_path(@item)
     else
@@ -37,6 +37,9 @@ class ItemsController < ApplicationController
   end
 
   private
+  def common_item
+    @item = Item.find(params[:id])
+  end
 
   def item_params
     params.require(:item).permit(:item_name, :item_description, :image, :category_id, :item_condition_id, :delivery_id,
