@@ -37,6 +37,7 @@ class ItemsController < ApplicationController
   end
 
   private
+
   def common_item
     @item = Item.find(params[:id])
   end
