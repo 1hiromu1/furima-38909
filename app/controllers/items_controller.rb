@@ -1,5 +1,6 @@
 class ItemsController < ApplicationController
   before_action :authenticate_user!, only: [:new, :edit]
+  before_action :common_item, only: [:show, :edit, :update]
 
   def index
     @items = Item.all.order(created_at: 'DESC')
@@ -19,16 +20,13 @@ class ItemsController < ApplicationController
   end
 
   def show
-    common_item
   end
 
   def edit
-    common_item
     redirect_to root_path unless current_user == @item.user
   end
 
   def update
-    common_item
     if @item.update(item_params)
       redirect_to item_path(@item)
     else
