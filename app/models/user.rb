@@ -1,4 +1,5 @@
 class User < ApplicationRecord
+  has_many :orders
   has_many :items
 
   validates :nickname, presence: true
