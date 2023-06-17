@@ -1,0 +1,12 @@
+FactoryBot.define do
+  factory :order_information do
+    user_id          { Faker::Number.between(from: 1, to: 10) }
+    item_id          { Faker::Number.between(from: 1, to: 10) }
+    post_code        { "#{Faker::Number.number(digits: 3)}-#{Faker::Number.number(digits: 4)}" }
+    prefecture_id    { Faker::Number.between(from: 2, to: 48) }
+    municipalities   { Faker::Address.city }
+    address          { Faker::Address.street_address }
+    building_name    { Faker::Address.secondary_address }
+    telephone_number { Faker::Number.number(digits: [10, 11].sample) }
+  end
+end
