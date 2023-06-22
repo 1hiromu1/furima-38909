@@ -1,6 +1,8 @@
 class OrderInformation
   include ActiveModel::Model
-  attr_accessor :user_id, :item_id, :post_code, :prefecture_id, :municipalities, :address, :building_name, :telephone_number, :token
+  attr_accessor :user_id, :item_id, :post_code, :prefecture_id, :municipalities, :address, :building_name, :telephone_number,
+                :token
+
   with_options presence: true do
     validates :user_id
     validates :item_id
@@ -13,6 +15,7 @@ class OrderInformation
   end
   def save
     order = Order.create(user_id: user_id, item_id: item_id)
-    Information.create(order_id: order.id, post_code: post_code, prefecture_id: prefecture_id, municipalities: municipalities, address: address, building_name: building_name, telephone_number: telephone_number)
+    Information.create(order_id: order.id, post_code: post_code, prefecture_id: prefecture_id, municipalities: municipalities,
+                       address: address, building_name: building_name, telephone_number: telephone_number)
   end
 end

@@ -29,12 +29,12 @@ RSpec.describe OrderInformation, type: :model do
       it '郵便番号が無ければ購入できない' do
         @order_information.post_code = nil
         @order_information.valid?
-        expect(@order_information.errors.full_messages).to include("Post code can't be blank", "Post code is invalid")
+        expect(@order_information.errors.full_messages).to include("Post code can't be blank", 'Post code is invalid')
       end
       it '郵便番号は、「3桁ハイフン4桁」の半角文字列のみでないと購入できない' do
-        @order_information.post_code = 1234567
+        @order_information.post_code = 1_234_567
         @order_information.valid?
-        expect(@order_information.errors.full_messages).to include("Post code is invalid")
+        expect(@order_information.errors.full_messages).to include('Post code is invalid')
       end
       it '都道府県が無ければ購入できない' do
         @order_information.prefecture_id = nil
@@ -54,12 +54,13 @@ RSpec.describe OrderInformation, type: :model do
       it '電話番号が無ければ購入できない' do
         @order_information.telephone_number = nil
         @order_information.valid?
-        expect(@order_information.errors.full_messages).to include("Telephone number can't be blank", "Telephone number is invalid")
+        expect(@order_information.errors.full_messages).to include("Telephone number can't be blank",
+                                                                   'Telephone number is invalid')
       end
       it '電話番号は、10桁以上11桁以内の半角数値のみでないと購入できない' do
         @order_information.telephone_number = '090-1234-5678'
         @order_information.valid?
-        expect(@order_information.errors.full_messages).to include("Telephone number is invalid")
+        expect(@order_information.errors.full_messages).to include('Telephone number is invalid')
       end
       it 'tokenが空では購入できない' do
         @order_information.token = nil
@@ -69,4 +70,3 @@ RSpec.describe OrderInformation, type: :model do
     end
   end
 end
-
