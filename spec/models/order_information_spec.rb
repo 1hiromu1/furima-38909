@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.describe OrderInformation, type: :model do
   before do
     user = FactoryBot.create(:user)
-    item = FactoryBot.create(:item, user: user)
+    item = FactoryBot.create(:item)
     @order_information = FactoryBot.build(:order_information, user_id: user.id, item_id: item.id)
   end
 
@@ -34,12 +34,17 @@ RSpec.describe OrderInformation, type: :model do
         expect(@order_information.errors.full_messages).to include("Post code can't be blank", 'Post code is invalid')
       end
       it '郵便番号は、「3桁ハイフン4桁」の半角文字列のみでないと購入できない' do
-        @order_information.post_code = 1_234_567
+        @order_information.post_code = "1234567"
         @order_information.valid?
-        expect(@order_information.errors.full_messages).to include('Post code is invalid')
+        expect(@order_information.errors.full_messages).to include("Post code is invalid")
       end
       it '都道府県が無ければ購入できない' do
         @order_information.prefecture_id = nil
+        @order_information.valid?
+        expect(@order_information.errors.full_messages).to include("Prefecture can't be blank")
+      end
+      it '都道府県に「---」が選択されている場合は購入できない' do
+        @order_information.prefecture_id = 1
         @order_information.valid?
         expect(@order_information.errors.full_messages).to include("Prefecture can't be blank")
       end
@@ -61,6 +66,16 @@ RSpec.describe OrderInformation, type: :model do
       end
       it '電話番号は、10桁以上11桁以内の半角数値のみでないと購入できない' do
         @order_information.telephone_number = '090-1234-5678'
+        @order_information.valid?
+        expect(@order_information.errors.full_messages).to include('Telephone number is invalid')
+      end
+      it '電話番号が9桁以下では購入できない' do
+        @order_information.telephone_number = '12345678'
+        @order_information.valid?
+        expect(@order_information.errors.full_messages).to include('Telephone number is invalid')
+      end
+      it '電話番号が12桁以上では購入できない' do
+        @order_information.telephone_number = '1234567891234'
         @order_information.valid?
         expect(@order_information.errors.full_messages).to include('Telephone number is invalid')
       end
