@@ -1,4 +1,7 @@
 class OrdersController < ApplicationController
+  before_action :check_user, only: [:index]
+
+
   def index
     @item = Item.find(params[:item_id])
     @order_information = OrderInformation.new
@@ -29,6 +32,19 @@ class OrdersController < ApplicationController
       card: order_information_params[:token],
       currency: 'jpy'
     )
+  end
+
+  def check_user
+    @item = Item.find(params[:item_id])
+    @order = Order.find_by(item_id: @item.id, user_id: current_user.id)
+
+    if user_signed_in?
+      if current_user == @item.user || (@order && @item.id == @order.item_id)
+        redirect_to root_path
+      end
+    else
+      redirect_to new_user_session_path
+    end
   end
 
 end
