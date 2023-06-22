@@ -34,9 +34,9 @@ RSpec.describe OrderInformation, type: :model do
         expect(@order_information.errors.full_messages).to include("Post code can't be blank", 'Post code is invalid')
       end
       it '郵便番号は、「3桁ハイフン4桁」の半角文字列のみでないと購入できない' do
-        @order_information.post_code = "1234567"
+        @order_information.post_code = '1234567'
         @order_information.valid?
-        expect(@order_information.errors.full_messages).to include("Post code is invalid")
+        expect(@order_information.errors.full_messages).to include('Post code is invalid')
       end
       it '都道府県が無ければ購入できない' do
         @order_information.prefecture_id = nil
