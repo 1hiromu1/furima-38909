@@ -31,7 +31,9 @@
           <%= link_to "削除", item_path(@item), method: :delete, class:"item-destroy" %>
         <% end %>
       <% else %>
-        <%= link_to "購入画面に進む", item_orders_path(item_id: @item.id) ,class:"item-red-btn"%>
+        <% if @item.id != @order.item_id %>
+          <%= link_to "購入画面に進む", item_orders_path(item_id: @item.id) ,class:"item-red-btn"%>
+        <% end %>
       <% end %>
     <% end %>
 
