@@ -7,7 +7,7 @@ RSpec.describe OrderInformation, type: :model do
 
   describe '商品購入機能' do
     context '商品購入できるとき' do
-      it 'user_id、item_id、post_code、prefecture_id、municipalities、address、building_name、telephone_numberが存在すれば購入できる' do
+      it 'user_id、item_id、post_code、prefecture_id、municipalities、address、building_name、telephone_number, tokenが存在すれば購入できる' do
         expect(@order_information).to be_valid
       end
       it '建物名が無くても購入できる' do
@@ -60,6 +60,11 @@ RSpec.describe OrderInformation, type: :model do
         @order_information.telephone_number = '090-1234-5678'
         @order_information.valid?
         expect(@order_information.errors.full_messages).to include("Telephone number is invalid")
+      end
+      it 'tokenが空では購入できない' do
+        @order_information.token = nil
+        @order_information.valid?
+        expect(@order_information.errors.full_messages).to include("Token can't be blank")
       end
     end
   end
