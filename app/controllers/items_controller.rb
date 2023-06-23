@@ -3,7 +3,6 @@ class ItemsController < ApplicationController
   before_action :common_item, only: [:show, :edit, :update, :destroy]
   before_action :common_order, only: [:show, :edit]
 
-
   def index
     @items = Item.all.order(created_at: 'DESC')
   end
