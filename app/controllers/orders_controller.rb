@@ -41,7 +41,6 @@ class OrdersController < ApplicationController
 
   def check_user
     if user_signed_in?
-      @item = Item.find(params[:item_id])
       @order = Order.find_by(item_id: @item.id, user_id: current_user.id)
 
       redirect_to root_path if current_user == @item.user || (@order && @item.id == @order.item_id)
