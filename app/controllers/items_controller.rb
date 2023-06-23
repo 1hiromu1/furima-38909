@@ -4,7 +4,8 @@ class ItemsController < ApplicationController
 
   def index
     @items = Item.all.order(created_at: 'DESC')
-    @order = Order.last
+    item_ids = @items.pluck(:id)
+    @order = Order.find_by(item_id: item_ids)
   end
 
   def new
@@ -21,12 +22,12 @@ class ItemsController < ApplicationController
   end
 
   def show
-    @order = Order.last
+    @order = Order.find_by(item_id: @item.id)
   end
 
   def edit
-    @order = Order.last
-    redirect_to root_path unless current_user == @item.user && (@item.id != @order.item_id)
+    @order = Order.find_by(item_id: @item.id)
+    redirect_to root_path unless @order.nil? || (current_user == @item.user && @item.id != @order.item_id)
   end
 
   def update
