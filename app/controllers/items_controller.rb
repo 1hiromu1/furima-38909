@@ -4,8 +4,6 @@ class ItemsController < ApplicationController
 
   def index
     @items = Item.all.order(created_at: 'DESC')
-    item_ids = @items.pluck(:id)
-    @order = Order.find_by(item_id: item_ids)
   end
 
   def new
